@@ -36,14 +36,13 @@ public class PostRepositoryImpl implements IPostRepository {
 
     @Override
     public void save(Post post) {
-        String sql = "INSERT INTO posts (title, content,user_id, is_post_popular, date_added) VALUES (:title, :content,:userId, :is_post_popular, :date_added)";
+        String sql = "INSERT INTO posts (title, content,user_id, date_added) VALUES (:title, :content,:userId, :date_added)";
 
         long postId = jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("title", post.getTitle())
                         .bind("content", post.getContent())
                         .bind("userId",post.getUserId())
-                        .bind("is_post_popular",post.isPostPopular())
                         .bind("date_added",new Date())
                         .executeAndReturnGeneratedKeys("id")
                         .mapTo(Long.class)

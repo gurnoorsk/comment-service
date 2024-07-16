@@ -27,8 +27,6 @@ public class Post implements Serializable {
     @Column(nullable = false)
     private String userId;
     @Column(nullable = false)
-    private boolean isPostPopular = false; // Default value set to false
-    @Column(nullable = false)
     private Date dateAdded;
     public Post(Long id) {
         this.id = id;
